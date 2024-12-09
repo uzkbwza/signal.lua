@@ -171,7 +171,7 @@ end
 ---@param ... any
 function signal.emit(emitter, signal_id, ...)
     local sig = signal.get(emitter, signal_id)
-    assert(sig ~= nil, "no signal " .. tostring(signal_id) .. " for emitter " .. tostring(emitter))
+    if sig == nil then error("no signal " .. tostring(signal_id) .. " for emitter " .. tostring(emitter)) end
     for listener, connection in pairs(sig.listeners) do
         for func_name, t in pairs(connection) do
             local func = t.func

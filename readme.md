@@ -25,7 +25,7 @@ local player = {
 -- register a signal on the player
 signal.register(player, "health_changed")
 
-player.take_damage = function(self, amount)
+player:take_damage = function(amount)
     self.health = self.health - amount
     -- emit the signal to tell listeners that health changed
     signal.emit(self, "health_changed", self.health)
@@ -33,7 +33,7 @@ end
 
 local health_bar = {}
 
-health_bar.show_health = function(self, new_health)
+health_bar:show_health = function(new_health)
     print("health: " .. string.rep("#", new_health))
     -- prints "health: ##########"
 end
